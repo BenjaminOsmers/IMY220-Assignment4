@@ -3,6 +3,15 @@ $(document).on('click', '.details > .btn', function () {
 	let dataType = $(this).parent().data('type')
 	let data = $(this).parent().children('b').text()
 
+	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+	if (dataType === 'date') {
+		let date = data
+		let month = ''
+		let year = ''
+		let day = ''
+	}
+
 	$(this).parent().children('b').remove()
 	$(this).parent().children('span').remove()
 

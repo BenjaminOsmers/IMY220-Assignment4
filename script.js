@@ -6,10 +6,21 @@ $(document).on('click', '.details > .btn', function () {
 	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 	if (dataType === 'date') {
-		let date = data
-		let month = ''
-		let year = ''
-		let day = ''
+		let date = currVal.split(' ')
+		let month = date[1]
+		let year = date[2]
+		let day = date[0]
+		month = `${months.indexOf(month) + 1}`
+
+		if (month.length === 1) {
+			month = `0${month}`
+		}
+
+		if (day.length === 1) {
+			day = `0${day}`
+		}
+
+		currVal = `${year}-${month}-${day}`
 	}
 
 	$(this).parent().children('b').remove()
@@ -29,6 +40,22 @@ $(document).on('click', '.details > .btn', function () {
 
 	$(document).on('click', '.details > .col-4 > .btn', function () {
 		let newVal = $(this).parent().parent().children('.col-8').children('input').val()
+
+		if (dataType === 'date') {
+			let val = newVal.split('-')
+
+			let month = val[1] - 1
+			let year = val[0]
+			let day = val[2]
+
+			if (month[0] === '0') {
+				month = month[1]
+			}
+
+			month = months[month]
+
+			newVal = `${day} ${month} ${year}`
+		}
 
 		$(this).parent().parent().removeClass('d-flex')
 		$(this)
